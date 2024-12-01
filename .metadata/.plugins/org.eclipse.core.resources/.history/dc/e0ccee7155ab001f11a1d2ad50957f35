@@ -1,0 +1,30 @@
+package testCases;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
+public class BaseClass {
+
+	
+	// method for creating a random string
+	public String randomeString()
+	{
+		String generatedstring = RandomStringUtils.randomAlphabetic(5);
+		return generatedstring;
+	}
+	
+	// method for creating a random number for phone number field 
+	public String randomeNumber()
+	{
+		String generatednumber = RandomStringUtils.randomNumeric(10);
+		return generatednumber;
+	}
+	
+	// method for creating a random alpha number for password field 
+	public String randomeAlphaNumberic()
+	{
+		String generatedstring = RandomStringUtils.randomAlphabetic(3);
+		String generatednumber = RandomStringUtils.randomNumeric(3);
+		return (generatedstring + "@" + generatednumber);
+	}
+	
+}

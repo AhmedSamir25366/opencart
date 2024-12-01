@@ -1,0 +1,51 @@
+package testBase;
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+// BaseClass contains all reusable methods 
+
+public class BaseClass {
+	public WebDriver driver;
+
+	@BeforeClass
+	public void setup()
+	{
+		driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://demo.opencart.com/en-gb?route=common/home");
+		driver.manage().window().maximize();
+	}
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+		
+	}
+	// method for creating a random string
+	public String randomeString()
+	{
+		String generatedstring = RandomStringUtils.randomAlphabetic(5);
+		return generatedstring;
+	}
+	
+	// method for creating a random number for phone number field 
+	public String randomeNumber()
+	{
+		String generatednumber = RandomStringUtils.randomNumeric(10);
+		return generatednumber;
+	}
+	
+	// method for creating a random alpha number for password field 
+	public String randomeAlphaNumberic()
+	{
+		String generatedstring = RandomStringUtils.randomAlphabetic(3);
+		String generatednumber = RandomStringUtils.randomNumeric(3);
+		return (generatedstring + "@" + generatednumber);
+	}
+}

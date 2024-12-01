@@ -1,0 +1,63 @@
+package testCases;
+
+import java.time.Duration;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import pageObjects.AccountRegistrationPage;
+import pageObjects.HomePage;
+
+public class TC001_AccountRegistrationTest {
+	public WebDriver driver;
+	
+	
+	// Test methods
+	@BeforeClass
+	public void setup()
+	{
+		driver = new ChromeDriver();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.get("https://demo.opencart.com/en-gb?route=common/home");
+		driver.manage().window().maximize();
+	}
+	@AfterClass
+	public void tearDown()
+	{
+		driver.quit();
+		
+	}
+	@Test
+	public void verify_account_registration()
+	{
+		HomePage hp = new HomePage(driver); // Here we pass the driver to the HomePage object class
+		hp.clickMyAccount();
+		hp.clickRegister();
+		
+		AccountRegistrationPage regpage = new AccountRegistrationPage(driver);
+		regpage.setFirstName(randomeString().toUpperCase());
+		regpage.setLastName(randomeString().toUpperCase());
+		regpage.setEmail(randomeString() + "@gmail.com");
+		String password = randomeAlphaNumeric();
+		regpage.setPassword(password);
+		regpage.setPrivacyPolicy();
+		regpage.clickContinue();
+		
+		String confmsg = regpage.getConfirmationMsg();
+		Assert.assertEquals(confmsg, "Your Account Has Been Created!");
+			
+	}
+	
+	// random string
+	public String randomeString()
+	{
+		RandomStringUtils.randomAlphabetic(5);
+	}
+
+}

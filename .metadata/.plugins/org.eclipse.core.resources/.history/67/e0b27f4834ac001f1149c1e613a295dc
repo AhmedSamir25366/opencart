@@ -1,0 +1,14 @@
+package testCases;
+
+/*
+ Data is valid - login success - test case is passed - logout
+ Data is valid - login failed - test case is failed 
+ 
+ Data is invalid - login success - test case is failed - logout
+ Data is invalid - login failed - test case is passed 
+
+ */
+
+public class TC003_LoginDDT {
+
+}

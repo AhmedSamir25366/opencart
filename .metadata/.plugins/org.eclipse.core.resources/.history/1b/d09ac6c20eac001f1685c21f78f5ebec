@@ -1,0 +1,27 @@
+package testCases;
+
+import org.testng.annotations.Test;
+
+import pageObjects.HomePage;
+import pageObjects.LoginPage;
+import testBase.BaseClass;
+
+public class TC002_LoginTest extends BaseClass {
+	// Validations only
+	@Test
+	public void verify_login()
+	{
+		logger.info("****** Starting TC002_LoginTest ************");
+		HomePage hp = new HomePage(driver); // to be able to access locators and action methods from HomePage page object class
+		hp.clickMyAccount();
+		hp.clickLogin();
+		
+		LoginPage lp = new LoginPage(driver);
+		lp.setEmail(p.getProperty("email"));
+		lp.setPassword(p.getProperty("password"));
+		
+		
+		
+	}
+
+}

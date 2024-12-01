@@ -1,0 +1,9 @@
+package pageObjects;
+
+public class HomePage extends BasePage {
+	
+	ChromeDriver driver = new ChromeDriver();
+	
+	
+
+}
